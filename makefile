@@ -5,6 +5,9 @@ all: ${NAME}
 ${NAME}:
 	yarn start 
 
+run:
+	npx expo start
+
 config:
 	eas build:configure
 
