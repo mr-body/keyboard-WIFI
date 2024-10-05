@@ -37,7 +37,7 @@ const Home = ({ setRoute, ip, port, setIp, setPort }) => {
 }
 
 const App = () => {
-  const [route, setRoute] = React.useState('Keyboard');
+  const [route, setRoute] = React.useState('Home');
   const [ip, setIp] = React.useState('127.0.0.1');
   const [port, setPort] = React.useState(1933);
 

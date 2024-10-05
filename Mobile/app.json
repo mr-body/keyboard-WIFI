@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "my-app",
+    "name": "keyboard",
     "slug": "my-app",
     "version": "1.0.0",
     "orientation": "landscape",
@@ -19,7 +19,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.sonny_boy.myapp"
+      "package": "com.sonny_boy.keyboard"
     },
     "web": {
       "favicon": "./assets/favicon.png"
