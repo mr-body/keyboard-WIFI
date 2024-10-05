@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import { useEffect } from 'react';
 
 import Keyboard from './components/keyboard';
 import { StatusBar } from 'expo-status-bar';
@@ -36,10 +35,9 @@ const Home = ({ setRoute, ip, port, setIp, setPort }) => {
 }
 
 const App = () => {
-  const [route, setRoute] = React.useState('Home');
+  const [route, setRoute] = React.useState('home');
   const [ip, setIp] = React.useState('127.0.0.1');
   const [port, setPort] = React.useState(1933);
-
 
   const Route = () => {
     switch (route) {
