@@ -1,50 +1,75 @@
-from flask import Flask, jsonify, render_template
-from flask_cors import CORS
+from flask import Flask, request, jsonify
 import pyautogui
-import os
+import logging
+import datetime
+import sys
+
+# Configurações de log
+LOG_FILE = 'logs.txt'
+logging.basicConfig(filename=LOG_FILE, level=logging.INFO, 
+                    format='%(asctime)s [%(levelname)s] %(message)s')
 
 app = Flask(__name__)
-CORS(app)
 
-# Caminho para o arquivo de log
-LOG_FILE = 'logs.txt'
+# Função para logar a entrada
+def log_value(ip, port, value, success):
+    status = "SUCCESS" if success else "ERROR"
+    logging.info(f"[{ip}:{port}][{value}] -> {status}")
+    print(f"[{ip}:{port}] [{datetime.datetime.now()}] [{value}] -> {status}")
 
-# Função auxiliar para adicionar o log ao arquivo
-def log_value(value):
-    with open(LOG_FILE, 'a') as f:
-        f.write(f'{value}\n')
+# Função para digitar caracteres, incluindo especiais
+def type_key(key):
+    try:
+        # Trata caracteres especiais
+        if key == 'space':
+            pyautogui.press('space')
+        elif key == 'enter':
+            pyautogui.press('enter')
+        elif key == 'backspace':
+            pyautogui.press('backspace')
+        elif key == 'delete':
+            pyautogui.press('delete')
+        elif key == 'capslock':
+            pyautogui.press('capslock')
+        elif key == 'capslock':
+            pyautogui.press('capslock')
+        elif key == 'Tab':
+            pyautogui.press('tab')
+        else:
+            # Para outros caracteres, usa write
+            pyautogui.write(key)
+    except Exception as e:
+        print(f"Erro ao digitar a tecla {key}: {e}")
 
-# Rota para receber os valores via URL e digitar usando PyAutoGUI
-@app.route('/api/keyboard/<string:arg>', methods=['GET'])
-def type_text(arg):
-    log_value(arg)  # Adiciona o texto ao log
+# Rota para processar requisições de teclado
+@app.route('/api/keyboard/<path:key_sequence>', methods=['GET'])
+def handle_key(key_sequence):
+    ip = request.remote_addr
+    port = request.environ.get('SERVER_PORT')  # Obtém a porta do servidor
+    success = True
 
-    # Verifica se o argumento é uma tecla especial
-    if arg == "enter":
-        pyautogui.press('enter')
-    elif arg == "CapsLock":
-        pyautogui.press('capslock')
-    elif arg == "Tab":
-        pyautogui.press('tab')
-    elif arg == "backspace":
-        pyautogui.press('backspace')
-    elif arg == "space":
-        pyautogui.press('space')  # Pressiona a barra de espaço
-    else:
-        pyautogui.typewrite(arg)
+    try:
+        # Itera sobre cada caractere na sequência
+        # for char in key_sequence:
+        type_key(key_sequence)  # Digita o caractere
+    except Exception as e:
+        success = False
+        print(f"Erro ao processar a sequência de teclas: {e}")
 
-    return jsonify({"status": "success", "message": f"Typed: {arg}"})
-
-# Rota para visualizar os logs
-@app.route('/')
-def view_logs():
-    if os.path.exists(LOG_FILE):
-        with open(LOG_FILE, 'r') as f:
-            logs = f.readlines()
-    else:
-        logs = []
-
-    return render_template('logs.html', logs=logs)
+    log_value(ip, port, key_sequence, success)
+    return jsonify({"status": "Typed"}), 200 if success else 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=1933)
+    # Verifica se a porta foi fornecida como argumento
+    port = 1933  # Porta padrão
+    if len(sys.argv) == 3 and sys.argv[1] == '-p':
+        try:
+            port = int(sys.argv[2])
+        except ValueError:
+            print("Por favor, forneça um número válido para a porta.")
+            sys.exit(1)
+    elif len(sys.argv) > 1:
+        print("Uso: python script.py -p <porta>")
+        sys.exit(1)
+
+    app.run(host='0.0.0.0', port=port)
