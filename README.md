@@ -2,9 +2,8 @@
 
 <img src="images/logo.png" width="128" height="128" alt="Teclado Responsivo" align="right" />
 
-Este repositório no GitHub (<https://github.com/mr-body/keyboard-WIFI/>) é a única fonte oficial do projeto. Não baixe versões de sites aleatórios, mesmo que seu nome contenha `scrcpy`.
+Este repositório no GitHub (<https://github.com/mr-body/keyboard-WIFI/>) é a única fonte oficial do projeto. Não baixe versões de sites aleatórios, mesmo que seu nome contenha `Helena keyboard`.
 
-<br>
 <br>
 
 ## Descrição
