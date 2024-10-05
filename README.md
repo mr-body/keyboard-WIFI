@@ -27,7 +27,7 @@ Esta aplicação implementa um teclado digital responsivo desenvolvido em React 
 
 ## Obtenha o Aplicativo
 
-- [Instalação no Linux](doc/linux.md)
+- [Instalação no Linux](<https://github.com/cbd8ea36-9c0b-4e5d-b922-964472db1363>)
 - [Instalação no Windows](doc/windows.md)
 - [Instalação no macOS](doc/macos.md)
 
