@@ -1081,3 +1081,17 @@
 [100.118.80.62][2024-10-05 07:45:02][super] -> SUCCESS
 [100.118.80.62][2024-10-05 07:45:03][super] -> SUCCESS
 [100.118.80.62][2024-10-05 07:45:05][super] -> SUCCESS
+2024-10-05 08:56:31,733 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3030
+ * Running on http://10.0.2.15:3030
+2024-10-05 08:56:31,733 [INFO] [33mPress CTRL+C to quit[0m
+2024-10-05 09:30:19,220 [INFO] [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:3030
+ * Running on http://10.0.2.15:3030
+2024-10-05 09:30:19,220 [INFO] [33mPress CTRL+C to quit[0m
+2024-10-05 09:30:22,976 [INFO] [100.118.80.62:3030][super] -> SUCCESS
+2024-10-05 09:30:22,977 [INFO] 100.118.80.62 - - [05/Oct/2024 09:30:22] "GET /api/keyboard/super HTTP/1.1" 200 -
+2024-10-05 09:30:24,211 [INFO] [100.118.80.62:3030][super] -> SUCCESS
+2024-10-05 09:30:24,212 [INFO] 100.118.80.62 - - [05/Oct/2024 09:30:24] "GET /api/keyboard/super HTTP/1.1" 200 -

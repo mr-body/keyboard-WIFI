@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import { useEffect } from 'react';
-import * as ScreenOrientation from 'expo-screen-orientation';
 
 import Keyboard from './components/keyboard';
 import { StatusBar } from 'expo-status-bar';
@@ -41,10 +40,6 @@ const App = () => {
   const [ip, setIp] = React.useState('127.0.0.1');
   const [port, setPort] = React.useState(1933);
 
-  useEffect(() => {
-    // Muda a orientação para paisagem (horizontal)
-    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
-}, []);
 
   const Route = () => {
     switch (route) {

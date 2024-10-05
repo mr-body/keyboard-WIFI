@@ -41,10 +41,6 @@ const Keyboard = ({ ft_bock, ip, port }) => {
         setIsAlt(!isAlt);  // Alterna o estado entre true e false
     };
 
-    const ft_capslock = () => {
-        // Função para for as letras em maiusculas e minusculas
-    }
-
     const currentLayout = isAlt ? rows2 : rows;  // Escolhe o layout baseado no estado
 
     return (
@@ -58,7 +54,7 @@ const Keyboard = ({ ft_bock, ip, port }) => {
                         ) : item === 'enter' ? (
                             <ButtonMenu flexDirection='row' key={index} style={styles.button} width={25} height={25} color={"#ddd"} onPress={() => ft_click(item)} source={require('./images/enter.png')} />
                         ) : (
-                            <ButtonMenu key={index} style={[styles.button, item === 'CapsLock' ? styles.capsLock : null]} onPress={ft_capslock}>
+                            <ButtonMenu key={index} style={[styles.button, item === 'CapsLock' ? styles.capsLock : null]} onPress={() => ft_click(item)}>
                                 <Text style={styles.buttonText}>{item}</Text>
                             </ButtonMenu>
                         )
@@ -131,7 +127,6 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 16,
         color: '#ededed',
-        // textTransform: 'uppercase',
     },
 });
 
